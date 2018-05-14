@@ -1,15 +1,28 @@
 import React, { Component} from 'react';
+import { connect } from 'react-redux';
 import ContactList from './list';
+import { fetchContacts } from './actions';
 
 class ContactListPage extends Component {
-  render() {
-    return (
-      <div>
-        <h1>List of Legal Contacts</h1>
-        <ContactList/>
-      </div>
-    )
+
+    componentDidMount() {
+        this.props.fetchContacts();
+    }
+
+    render() {
+        return (
+          <div>
+            <h1>List of Contacts</h1>
+            <ContactList contacts={this.props.contacts}/>
+          </div>
+        )
+    }
+}
+
+function mapStateToProps(state) {
+  return {
+      contacts : state.contactStore.contacts
   }
 }
 
-export default ContactListPage;
+export default connect(mapStateToProps, {fetchContacts})(ContactListPage);

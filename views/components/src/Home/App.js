@@ -7,8 +7,8 @@ import OfferJobPage from '../OfferJob/Page';
 class App extends Component {
   render() {
     return (
-      <Container fluid>
-        <div className="ui two secondary pointing menu">
+      <Container>
+        <div className="ui secondary pointing menu">
           <NavLink className="item" to="#">
             LEGAL MARKET
           </NavLink>
