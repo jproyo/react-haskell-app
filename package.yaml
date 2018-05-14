@@ -1,0 +1,62 @@
+name:                react-haskell-app
+version:             0.1.0.0
+github:              "jproyo/react-haskell-app"
+license:             BSD3
+author:              "Juan Pablo Royo Sales"
+maintainer:          "juanpablo.royo@gmail.com"
+copyright:           "2018 Juan Pablo Royo Sales"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/jproyo/react-haskell-app#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- lucid
+- mtl
+- Spock >= 0.11
+- Spock-lucid
+- text
+- wai-middleware-static
+
+library:
+  source-dirs: src
+
+default-extensions:
+  - OverloadedStrings
+
+executables:
+  react-haskell-app:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    - -Wall
+    - -Wcompat
+    - -Wincomplete-record-updates
+    - -Wincomplete-uni-patterns
+    - -Wredundant-constraints
+    dependencies:
+    - react-haskell-app
+
+tests:
+  react-haskell-app-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - react-haskell-app
