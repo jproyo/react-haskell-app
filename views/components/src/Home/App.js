@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink, Route } from 'react-router-dom';
-import { Container, Divider, Image } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 import ContactListPage from '../ContactList/Page';
 import OfferJobPage from '../OfferJob/Page';
 
@@ -8,8 +8,10 @@ class App extends Component {
   render() {
     return (
       <Container fluid>
-        <Image src="images/logo.svg" size="small" className="menu__logo--padding"/>
         <div className="ui two secondary pointing menu">
+          <NavLink className="item" to="#">
+            LEGAL MARKET
+          </NavLink>
           <NavLink className="item" activeClassName="active" exact to="/">
             Legal Contacts List
           </NavLink>
