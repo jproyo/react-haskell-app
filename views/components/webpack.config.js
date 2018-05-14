@@ -10,6 +10,11 @@ fs.readdirSync(path.join(__dirname, 'src')).forEach(function(folder){
     }
 })
 
+const miniCssExtract = new MiniCssExtractPlugin({
+  filename: '[name].bundle.css',
+  chunkFilename: '[id].bundle.css'
+})
+
 module.exports = {
     entry: entries,
     output: {
@@ -27,32 +32,16 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: [
-                    {
-                        loader: "style-loader",
-                    },
-                    {
-                        loader: MiniCssExtractPlugin.loader
-                    },
-                    {
-                        loader: "css-loader",
-                        options: {
-                            modules: true,
-                            imporLoaders: 1,
-                            localIdentName: "[name].bundle.css",
-                            sourceMap: true,
-                            minimize: true
-                        }
-                    }
-                ]
+                // include: /node_modules/,
+                use: [ MiniCssExtractPlugin.loader, "css-loader" ]
             },
             {
-                test: /\.(png|gif|jpe?g|svg|ttf|eot|woff|svg)$/i,
+                test: /\.(png|gif|jpe?g|svg|ttf|eot|woff|woff2|svg)$/i,
                 use: [
                           {
                             loader: 'url-loader',
                             options: {
-                              limit: 25000
+                              limit: 100000
                             }
                           }
                      ]
@@ -60,12 +49,5 @@ module.exports = {
         ],
 
     },
-    plugins: [
-        new MiniCssExtractPlugin({
-          // Options similar to the same options in webpackOptions.output
-          // both options are optional
-          filename: '[name].bundle.css',
-          chunkFilename: '[id].bundle.css'
-        })
-    ],
+    plugins: [ miniCssExtract ],
 };
